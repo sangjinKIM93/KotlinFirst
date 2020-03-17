@@ -3,11 +3,10 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="@drawable/edge"
-    >
+    android:background="@drawable/edge">
 
     <TextView
-        android:id="@+id/itemSellName"
+        android:id="@+id/tvTotalName"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:text="종목명"
@@ -18,20 +17,10 @@
         />
 
     <TextView
-        android:id="@+id/itemBuyPrice"
-        android:layout_width="50dp"
+        android:id="@+id/tvTotalAvgPrice"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="매입가"
-        android:textSize="14dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
-    <TextView
-        android:id="@+id/itemSellPrice"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="매도가"
+        android:text="평균매수가"
         android:textSize="14dp"
         android:layout_weight="1"
         android:layout_gravity="center"
@@ -39,17 +28,29 @@
         />
 
     <TextView
-        android:id="@+id/itemSellNum"
-        android:layout_width="40dp"
+        android:id="@+id/tvTotalCurrentPrice"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="매도량"
+        android:text="현재가"
         android:textSize="14dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
         android:layout_gravity="center"
         android:gravity="center"
         />
+
     <TextView
-        android:id="@+id/itemProfit"
+        android:id="@+id/tvTotalNum"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="보유량"
+        android:textSize="14dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/tvTotalProfit"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:text="손익"
@@ -58,6 +59,5 @@
         android:layout_gravity="center"
         android:gravity="center"
         />
-
 
 </LinearLayout>
