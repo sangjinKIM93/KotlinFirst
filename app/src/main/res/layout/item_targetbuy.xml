@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/edge"
+    >
+
+    <TextView
+        android:id="@+id/tvTargetDate"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_weight="1"
+        android:text="매수일자"
+        android:gravity="center"
+        android:padding="4dp"/>
+
+    <TextView
+        android:id="@+id/tvTargetPrice"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14dp"
+        android:gravity="center"
+        android:text="매입가"/>
+
+    <TextView
+        android:id="@+id/tvTargetNum"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14dp"
+        android:gravity="center"
+        android:text="보유량"/>
+
+    <EditText
+        android:id="@+id/etNumSell"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="14dp"
+        android:gravity="center"
+        android:hint="0"
+        android:textColor="@color/goldenrod"
+        android:inputType="number"
+        />
+
+
+
+</LinearLayout>

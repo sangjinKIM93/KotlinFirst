@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ETC.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/list_title">
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="구분"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_weight="0.4"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="종목명"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_weight="1.6"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="총액(원)"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_weight="1.8"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="날짜"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stockListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        />
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/buyBtn"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        android:layout_marginBottom="140dp"-->
+<!--        android:layout_marginRight="18dp"-->
+<!--        android:layout_marginEnd="18dp"-->
+<!--        android:backgroundTint="@color/moccasin"-->
+<!--        app:borderWidth="0dp"-->
+<!--        app:fabCustomSize="55dp"-->
+<!--        android:elevation="6dp"-->
+<!--        app:pressedTranslationZ="12dp"-->
+<!--        android:src="@drawable/ic_buy"-->
+<!--        android:visibility="invisible"-->
+<!--        app:maxImageSize="35dp"-->
+<!--        />-->
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/sellBtn"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        android:layout_marginBottom="80dp"-->
+<!--        android:layout_marginRight="18dp"-->
+<!--        android:layout_marginEnd="18dp"-->
+<!--        android:backgroundTint="@color/moccasin"-->
+<!--        app:borderWidth="0dp"-->
+<!--        app:fabCustomSize="55dp"-->
+<!--        android:elevation="6dp"-->
+<!--        app:pressedTranslationZ="12dp"-->
+<!--        android:src="@drawable/ic_sell"-->
+<!--        app:maxImageSize="35dp"-->
+<!--        android:visibility="invisible"-->
+<!--        />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addBtn"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/goldenrod"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        android:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/ic_add_white"
+        />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

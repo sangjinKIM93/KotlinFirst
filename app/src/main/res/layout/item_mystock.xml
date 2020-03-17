@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/edge"
+    >
+
+    <TextView
+        android:id="@+id/tvType"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_weight="0.4"
+        android:layout_marginRight="5dp"
+        android:text="구분"
+        android:padding="4dp"/>
+
+    <TextView
+        android:id="@+id/tvStockName"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.7"
+        android:textSize="16dp"
+        android:layout_marginRight="10dp"
+        android:text="이름"/>
+
+    <TextView
+        android:id="@+id/tvStockPrice"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.6"
+        android:textSize="16dp"
+        android:layout_marginRight="5dp"
+        android:text="총액(원)"/>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:textSize="13dp"
+        android:text="날짜"/>
+
+
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/stockName"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="종목명"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/stockPrice"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="가격"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/numberOfStock"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="수량"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/dialogBuyFinishBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>

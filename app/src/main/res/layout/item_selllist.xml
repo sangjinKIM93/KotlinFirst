@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/edge"
+    >
+
+    <TextView
+        android:id="@+id/itemSellName"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="종목명"
+        android:textSize="14dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/itemBuyPrice"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="매입가"
+        android:textSize="14dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:id="@+id/itemSellPrice"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="매도가"
+        android:textSize="14dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/itemSellNum"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="매도량"
+        android:textSize="14dp"
+        android:layout_weight="0.5"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:id="@+id/itemProfit"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="손익"
+        android:textSize="14dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        />
+
+
+</LinearLayout>
