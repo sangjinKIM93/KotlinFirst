@@ -37,4 +37,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.2.0-alpha01'
+
+    //jsoup 크롤링
+    implementation 'org.jsoup:jsoup:1.12.1'
+
+
 }

@@ -6,5 +6,5 @@ open class TotalModel(
     var totalAvgPrice:Int? = 0,
     var totalCurrentPrice:Int? = 0,
     var totalNum:Int? = 0,
-    var totalProfit:Int? = 0
+    var totalAmount:Int? = 0
 )

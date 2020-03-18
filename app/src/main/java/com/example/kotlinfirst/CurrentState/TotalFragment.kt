@@ -117,17 +117,19 @@ open class TotalFragment : Fragment() {
                 }
             }
 
-            realm.executeTransaction {
-                //최종 데이터 추가
-                totalList.add(
-                    TotalModel(
-                        totalNameList[i],
-                        totalAvgPrice,
-                        0,
-                        totalNum,
-                        0
+            if(totalNum > 0){   //0보다 작으면 의미가 없지.
+                realm.executeTransaction {
+                    //최종 데이터 추가
+                    totalList.add(
+                        TotalModel(
+                            totalNameList[i],
+                            totalAvgPrice,
+                            0,
+                            totalNum,
+                            totalAvgPrice*totalNum
+                        )
                     )
-                )
+                }
             }
         }
 

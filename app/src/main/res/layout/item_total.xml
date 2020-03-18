@@ -27,16 +27,16 @@
         android:gravity="center"
         />
 
-    <TextView
-        android:id="@+id/tvTotalCurrentPrice"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:text="현재가"
-        android:textSize="14dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/tvTotalCurrentPrice"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="현재가"-->
+<!--        android:textSize="14dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"-->
+<!--        />-->
 
     <TextView
         android:id="@+id/tvTotalNum"
@@ -50,10 +50,10 @@
         />
 
     <TextView
-        android:id="@+id/tvTotalProfit"
+        android:id="@+id/tvTotalAmount"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="손익"
+        android:text="총액"
         android:textSize="14dp"
         android:layout_weight="1"
         android:layout_gravity="center"

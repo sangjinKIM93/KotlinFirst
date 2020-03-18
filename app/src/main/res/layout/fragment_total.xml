@@ -36,16 +36,16 @@
             android:gravity="center"
             />
 
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="현재가"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            />
+<!--        <TextView-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="현재가"-->
+<!--            android:textSize="16dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"-->
+<!--            />-->
 
         <TextView
             android:layout_width="40dp"
@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:text="손익"
+            android:text="총액"
             android:textSize="16dp"
             android:textStyle="bold"
             android:layout_weight="1"

@@ -54,6 +54,7 @@ class TotalDataAdapter(val list:MutableList<TotalModel>): RecyclerView.Adapter<T
         holder.containerView.tvTotalName.text = list[position].totalName
         holder.containerView.tvTotalNum.text = list[position].totalNum.toString()
         holder.containerView.tvTotalAvgPrice.text = list[position].totalAvgPrice.toString()
+        holder.containerView.tvTotalAmount.text = list[position].totalAmount.toString()
 
         //View에 연동되는 객체를 개발자가 할당해 줄 수 있는 속성
         //여기서 포지션은 그냥 현재 화면에서의 포지션이 아니라 전체에서 가지는 포지션이구나
