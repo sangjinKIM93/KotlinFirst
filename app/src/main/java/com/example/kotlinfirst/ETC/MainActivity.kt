@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 //                    //다이얼로그 설정
 //                    dialog = AlertDialog.Builder(context)
 //                    val edialog: LayoutInflater = LayoutInflater.from(context)
-//                    val mView: View = edialog.inflate(R.layout.dialog_buy, null)
+//                    val mView: View = edialog.inflate(R.layout.activity_buy_add, null)
 //
 //                    dialog.setView(mView)
 //                    val dialogReal = dialog.create()

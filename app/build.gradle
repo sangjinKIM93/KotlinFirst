@@ -41,5 +41,9 @@ dependencies {
     //jsoup 크롤링
     implementation 'org.jsoup:jsoup:1.12.1'
 
+    //레트로핏
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
 
 }
