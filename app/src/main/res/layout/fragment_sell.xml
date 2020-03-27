@@ -79,13 +79,12 @@
         />
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/totalProfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="총 손익"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/moccasin"
         android:layout_margin="16dp"
         />
 

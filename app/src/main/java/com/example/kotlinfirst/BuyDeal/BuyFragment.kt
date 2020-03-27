@@ -74,8 +74,7 @@ open class BuyFragment: Fragment(){
         v.stockListView.adapter = adapter
         v.stockListView.layoutManager = LinearLayoutManager(mContext)
 
-        //realmDB에서 자료가져오기
-        getStockData()
+
 
         //리사이클러뷰 단일 항목 클릭에 대한 인터페이스 정의
         adapter.onItemClickListener = {
@@ -92,6 +91,8 @@ open class BuyFragment: Fragment(){
 
     override fun onStart() {
         super.onStart()
+        //realmDB에서 자료가져오기
+        getStockData()
     }
 
     override fun onStop() {

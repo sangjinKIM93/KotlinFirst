@@ -30,26 +30,26 @@ class CrawlingTest : AppCompatActivity() {
         val retrofitService = retrofit.create(RetrofitKotlin::class.java)
 
 
-        btn_crawl.setOnClickListener{
-
-            retrofitService.getCrawl("sangjin").enqueue(object : Callback<ResponseBody>{
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    tv_crawl.text = t.toString()
-                    Log.d("on Faliure : ", t.toString());
-                }
-
-                override fun onResponse(
-                    call: Call<ResponseBody>,
-                    response: Response<ResponseBody>
-                ) {
-                    var result = response.body()?.string()
-                    tv_crawl.text = result
-                    Log.d("on success : ", result);
-                }
-
-            })
-
-        }
+//        btn_crawl.setOnClickListener{
+//
+//            retrofitService.getCrawl("sangjin").enqueue(object : Callback<ResponseBody>{
+//                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                    tv_crawl.text = t.toString()
+//                    Log.d("on Faliure : ", t.toString());
+//                }
+//
+//                override fun onResponse(
+//                    call: Call<ResponseBody>,
+//                    response: Response<ResponseBody>
+//                ) {
+//                    var result = response.body()?.string()
+//                    tv_crawl.text = result
+//                    Log.d("on success : ", result);
+//                }
+//
+//            })
+//
+//        }
     }
 }
 
