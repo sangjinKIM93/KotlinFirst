@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlinfirst.ETC.DatePickerSet
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.model.BuyModelRealm
 import com.example.kotlinfirst.model.SellModelRealm
@@ -22,7 +23,6 @@ import java.util.*
 @Suppress("CAST_NEVER_SUCCEEDS", "UNUSED_ANONYMOUS_PARAMETER", "NAME_SHADOWING")
 class RecordSellActivity : AppCompatActivity() {
 
-    var date = ""
     lateinit var realm: Realm
     var dealList = mutableListOf<String>()
 
@@ -30,6 +30,7 @@ class RecordSellActivity : AppCompatActivity() {
 
     lateinit var targetList: MutableList<TargetModel>
     lateinit var adapter: TargetDataAdapter
+    lateinit var datePickerSetSell: DatePickerSet
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +48,15 @@ class RecordSellActivity : AppCompatActivity() {
         targetBuyRecycler.adapter = adapter
         targetBuyRecycler.layoutManager = LinearLayoutManager(this)
 
-        //스피너와 데이트피커 설정
+        //스피너 설정
         spinnerSet()
-        datePickerSet()
+
+        //datePicker 설치 및 date 받기
+        val datePicker = findViewById<DatePicker>(R.id.date_pickerSell)
+        datePickerSetSell = DatePickerSet()
+        datePickerSetSell.datePickerSet(datePicker)
 
         fabButtonSet()
-
 
 
     }
@@ -89,7 +93,7 @@ class RecordSellActivity : AppCompatActivity() {
                         sellData.buyNum = targetList[i].buyNum
                         sellData.sellPrice = sellPriceInt
                         sellData.sellNum = sellNum
-                        sellData.sellDate = date
+                        sellData.sellDate = datePickerSetSell.date
                         sellData.buyIdx = targetList[i]._id!!.toInt()
 
                         //팔린 항목은 numsold 추가해주기
@@ -126,30 +130,6 @@ class RecordSellActivity : AppCompatActivity() {
                 dealList.add(companyName)
             }
 
-        }
-    }
-
-
-    //datePicker 셋팅 및 설정
-    private fun datePickerSet() {
-        //datePicker 설치
-        val datePicker = findViewById<DatePicker>(R.id.date_pickerSell)
-
-        //date 초기값
-        val yearInit = datePicker.year.toString()
-        val monthInit = datePicker.month.toString()
-        val dayInit = datePicker.dayOfMonth.toString()
-        date = "$yearInit-$monthInit-$dayInit"
-
-        //클릭시 date값 변환
-        val today = Calendar.getInstance()
-        datePicker.init(
-            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-        ) { view, year, month, day ->
-            var month = month + 1
-            val msg = "You Selected: $day/$month/$year"
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
         }
     }
 

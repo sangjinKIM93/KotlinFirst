@@ -6,6 +6,7 @@ import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlinfirst.ETC.DatePickerSet
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.RetrofitKotlin
 import com.example.kotlinfirst.model.BuyModelRealm
@@ -53,12 +54,13 @@ class BuyAddActivity : AppCompatActivity() {
             .build()
         retrofitService = retrofit.create(RetrofitKotlin::class.java)
 
-        //datePicker 설치
+        //datePicker 설치 및 date 받기
         val datePicker = findViewById<DatePicker>(R.id.date_picker)
-        datePickerSet(datePicker)
+        val datePickerSetAdd = DatePickerSet()     //내가 만든 클래스에서 가져온거
+        datePickerSetAdd.datePickerSet(datePicker)
 
         BuyFinishBtn.setOnClickListener{
-            addList(nameSelected, codeSelected, stockPrice.text.toString(), numberOfStock.text.toString(), date);
+            addList(nameSelected, codeSelected, stockPrice.text.toString(), numberOfStock.text.toString(), datePickerSetAdd.date);
         }
 
         btn_searchStock.setOnClickListener{
@@ -159,27 +161,27 @@ class BuyAddActivity : AppCompatActivity() {
     }
 
 
-    private fun datePickerSet(datePicker: DatePicker) {
-        //현재 날짜로 입력할시 날짜 설정
-        //date 초기값
-        val yearInit = datePicker.year.toString()
-        val monthInit = datePicker.month.toString()
-        val dayInit = datePicker.dayOfMonth.toString()
-        date = "$yearInit-$monthInit-$dayInit"
-
-        //datePicker 초기화 및 변경값 저장
-        val today = Calendar.getInstance()
-        datePicker.init(
-            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)
-        ) { view, year, month, day ->
-            var month = month + 1
-            val msg = "You Selected: $day/$month/$year"
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-
-            //이거는 month 앞에 "0"이 안 붙는 형식이라 따로 처리해줌.
-            if (month < 10) date = "$year-0$month-$day"
-            else date = "$year-$month-$day"
-        }
-    }
+//    private fun datePickerSet(datePicker: DatePicker) {
+//        //현재 날짜로 입력할시 날짜 설정
+//        //date 초기값
+//        val yearInit = datePicker.year.toString()
+//        val monthInit = datePicker.month.toString()
+//        val dayInit = datePicker.dayOfMonth.toString()
+//        date = "$yearInit-$monthInit-$dayInit"
+//
+//        //datePicker 초기화 및 변경값 저장
+//        val today = Calendar.getInstance()
+//        datePicker.init(
+//            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+//            today.get(Calendar.DAY_OF_MONTH)
+//        ) { view, year, month, day ->
+//            var month = month + 1
+//            val msg = "You Selected: $day/$month/$year"
+//            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+//
+//            //이거는 month 앞에 "0"이 안 붙는 형식이라 따로 처리해줌.
+//            if (month < 10) date = "$year-0$month-$day"
+//            else date = "$year-$month-$day"
+//        }
+//    }
 }
