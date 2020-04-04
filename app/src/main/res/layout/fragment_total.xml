@@ -93,7 +93,7 @@
         app:fabSize="normal"
         android:elevation="6dp"
         android:text="현재가격 크롤링"
-        android:backgroundTint="@color/goldenrod"
+        android:backgroundTint="@color/colorAccent"
         app:icon="@drawable/ic_crawl"
         />
 

@@ -5,7 +5,6 @@ import java.util.*
 
 public class DatePickerSet(var date: String = ""){
 
-
     public fun datePickerSet(datePicker: DatePicker){
         //현재 날짜로 입력할시 날짜 설정
         //date 초기값

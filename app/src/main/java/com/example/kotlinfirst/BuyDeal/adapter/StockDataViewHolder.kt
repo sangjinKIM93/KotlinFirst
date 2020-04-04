@@ -1,4 +1,4 @@
-package com.example.kotlinfirst.ETC
+package com.example.kotlinfirst.BuyDeal.adapter
 
 import android.view.ContextMenu
 import android.view.View

@@ -1,18 +1,13 @@
 package com.example.kotlinfirst.SellDeal
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirst.R
-import com.example.kotlinfirst.model.BuyModelRealm
 import com.example.kotlinfirst.model.SellModelRealm
-import kotlinx.android.synthetic.main.item_mystock.view.*
 import kotlinx.android.synthetic.main.item_selllist.view.*
-import kotlinx.android.synthetic.main.item_targetbuy.view.*
 
 class SellDataAdapter(val list:MutableList<SellModelRealm>): RecyclerView.Adapter<SellDataViewHolder>(), View.OnCreateContextMenuListener{
     override fun onCreateContextMenu(

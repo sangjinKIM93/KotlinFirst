@@ -31,10 +31,8 @@ open class SellFragment : Fragment() {
 
     fun newInstance(): SellFragment {
         val args = Bundle()
-
         val frag = SellFragment()
         frag.arguments = args
-
         return frag
     }
 

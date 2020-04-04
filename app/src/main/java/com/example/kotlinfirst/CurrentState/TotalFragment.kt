@@ -7,13 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.RetrofitKotlin
-import com.example.kotlinfirst.model.BuyModelRealm
+import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
 import com.example.kotlinfirst.model.SellModelRealm
 import com.example.kotlinfirst.model.TotalModel
 import com.google.gson.GsonBuilder

@@ -1,4 +1,4 @@
-package com.example.kotlinfirst.ETC
+package com.example.kotlinfirst.BuyDeal.adapter
 
 import android.view.ContextMenu
 import android.view.LayoutInflater
@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirst.R
-import com.example.kotlinfirst.model.BuyModelRealm
+import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
+import io.realm.RealmResults
 import kotlinx.android.synthetic.main.item_mystock.view.*
 
-class StockDataAdapter(val list:MutableList<BuyModelRealm>): RecyclerView.Adapter<StockDataViewHolder>(), View.OnCreateContextMenuListener{
+class StockDataAdapter(val list:RealmResults<BuyModelRealm>): RecyclerView.Adapter<StockDataViewHolder>(), View.OnCreateContextMenuListener{
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -49,9 +50,9 @@ class StockDataAdapter(val list:MutableList<BuyModelRealm>): RecyclerView.Adapte
     override fun onBindViewHolder(holder: StockDataViewHolder, position: Int) {
         //뷰홀더가 생성될때 실제 데이터를 넣어주는 역할
         holder.containerView.tvType.text = "매수"
-        holder.containerView.tvStockName.text = list[position].buyName
-        holder.containerView.tvStockPrice.text = list[position].buyPrice.toString()
-        holder.containerView.tvDate.text = list[position].date
+        holder.containerView.tvStockName.text = list[position]!!.buyName
+        holder.containerView.tvStockPrice.text = list[position]!!.buyPrice.toString()
+        holder.containerView.tvDate.text = list[position]!!.date
 
         //View에 연동되는 객체를 개발자가 할당해 줄 수 있는 속성
         //여기서 포지션은 그냥 현재 화면에서의 포지션이 아니라 전체에서 가지는 포지션이구나

@@ -1,8 +1,9 @@
-package com.example.kotlinfirst.BuyDeal
+package com.example.kotlinfirst
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.kotlinfirst.BuyDeal.BuyFragment
 import com.example.kotlinfirst.CurrentState.TotalFragment
 import com.example.kotlinfirst.SellDeal.SellFragment
 

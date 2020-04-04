@@ -1,9 +1,8 @@
-package com.example.kotlinfirst.BuyDeal
+package com.example.kotlinfirst
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
-import com.example.kotlinfirst.R
 import com.google.android.material.tabs.TabLayout
 
 class DealActivity : AppCompatActivity() {
@@ -12,7 +11,8 @@ class DealActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_deal)
 
-        val pagerAdapter = PagerAdapter(supportFragmentManager)
+        val pagerAdapter =
+            PagerAdapter(supportFragmentManager)
         val pager = findViewById<ViewPager>(R.id.container)
         pager.adapter = pagerAdapter
 

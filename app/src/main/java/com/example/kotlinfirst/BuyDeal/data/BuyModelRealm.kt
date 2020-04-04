@@ -1,4 +1,4 @@
-package com.example.kotlinfirst.model
+package com.example.kotlinfirst.BuyDeal.data
 
 import io.realm.RealmObject
 

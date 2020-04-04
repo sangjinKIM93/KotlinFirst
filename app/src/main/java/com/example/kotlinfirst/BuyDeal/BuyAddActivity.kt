@@ -3,13 +3,12 @@ package com.example.kotlinfirst.BuyDeal
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinfirst.ETC.DatePickerSet
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.RetrofitKotlin
-import com.example.kotlinfirst.model.BuyModelRealm
+import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
 import com.google.gson.GsonBuilder
 import io.realm.Realm
 import io.realm.kotlin.createObject

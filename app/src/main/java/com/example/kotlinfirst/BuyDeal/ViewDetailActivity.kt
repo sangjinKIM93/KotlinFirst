@@ -1,4 +1,4 @@
-package com.example.kotlinfirst.ETC
+package com.example.kotlinfirst.BuyDeal
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

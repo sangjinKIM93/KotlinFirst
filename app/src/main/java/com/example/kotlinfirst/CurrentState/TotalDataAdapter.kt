@@ -1,19 +1,12 @@
 package com.example.kotlinfirst.CurrentState
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirst.R
-import com.example.kotlinfirst.model.BuyModelRealm
-import com.example.kotlinfirst.model.SellModelRealm
 import com.example.kotlinfirst.model.TotalModel
-import kotlinx.android.synthetic.main.item_mystock.view.*
-import kotlinx.android.synthetic.main.item_selllist.view.*
-import kotlinx.android.synthetic.main.item_targetbuy.view.*
 import kotlinx.android.synthetic.main.item_total.view.*
 
 class TotalDataAdapter(val list:MutableList<TotalModel>): RecyclerView.Adapter<TotalDataViewHolder>(), View.OnCreateContextMenuListener{
