@@ -15,19 +15,19 @@
 
         <EditText
             android:id="@+id/stockName"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:hint="종목명"
+            android:hint="종목명 입력 후 버튼 클릭"
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/btn_searchStock"
-            android:layout_width="90dp"
+            android:id="@+id/searchStockBtn"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="종목 검색" />
+            android:text="검색" />
 
 
     </LinearLayout>

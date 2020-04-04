@@ -7,10 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirst.R
-import com.example.kotlinfirst.model.SellModelRealm
+import com.example.kotlinfirst.SellDeal.data.SellModelRealm
+import com.example.kotlinfirst.SellDeal.viewmodel.SellViewModel
 import com.example.kotlinfirst.recordSell.RecordSellActivity
 import io.realm.Realm
 import io.realm.kotlin.where
@@ -23,10 +27,8 @@ open class SellFragment : Fragment() {
     lateinit var mContext: Context
     lateinit var v: View
 
-    lateinit var sellList: MutableList<SellModelRealm>
     lateinit var adapter: SellDataAdapter
-
-    lateinit var realm: Realm
+    private var viewModel: SellViewModel?= null
 
 
     fun newInstance(): SellFragment {
@@ -45,20 +47,41 @@ open class SellFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_sell, container, false)
         mContext = requireContext()
 
-        //realm객체 선언
-        realm = Realm.getDefaultInstance()
+        //fabButon 설정
+        initSet()
 
-        //fabButon 설정 및 리스너
-        fabBtnSet()
+        //vieModel셋팅
+        viewModel = activity!!.application!!.let{
+            ViewModelProvider(
+                activity!!.viewModelStore,
+                ViewModelProvider.AndroidViewModelFactory(it)
+            ).get(SellViewModel::class.java)
+        }
 
-        //리사이클러뷰 셋팅
-        sellList = mutableListOf()
-        adapter = SellDataAdapter(sellList)
-        v.sellRecycler.adapter = adapter
-        v.sellRecycler.layoutManager = LinearLayoutManager(mContext)
+        //리사이클러뷰 & 옵저버 셋팅
+        viewModel!!.let{
+            it.sellLiveData.value!!.let{
+                adapter = SellDataAdapter(it)
+                v.sellRecycler.adapter = adapter
+                v.sellRecycler.layoutManager = LinearLayoutManager(mContext)
+            }
+            it.sellLiveData.observe(viewLifecycleOwner,
+                Observer {
+                    adapter.notifyDataSetChanged()
+                })
+        }
 
-        //자료가져오기
-        getStockData()
+
+        return v
+    }
+
+
+    private fun initSet() {
+        //fab버튼 클릭시
+        v.addSellBtn.setOnClickListener {
+            var intent = Intent(mContext, RecordSellActivity::class.java)
+            startActivity(intent)
+        }
 
         //스크롤시 버튼 숨기기
         v.sellRecycler.addOnScrollListener(object: RecyclerView.OnScrollListener(){
@@ -74,58 +97,11 @@ open class SellFragment : Fragment() {
                 }
             }
         })
-
-
-        return v
     }
 
 
-    private fun fabBtnSet() {
-        v.addSellBtn.setOnClickListener {
-            var intent = Intent(mContext, RecordSellActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
-
-    private fun getStockData() {
-        sellList.clear()
-
-        var query = realm.where<SellModelRealm>()
-        var allDealData = query.findAll()
-
-        println("디비에 있는 데이터 $allDealData")
-        var totalProfitData = 0
-
-        var jsonArray = JSONArray(allDealData.asJSON())
-        for (i in 0..jsonArray.length() - 1) {
-            var item = jsonArray.getJSONObject(i)
-            sellList.add(
-                SellModelRealm(
-                    item.getLong("_id"),
-                    item.getString("sellName"),
-                    item.getInt("buyPrice"),
-                    item.getInt("buyNum"),
-                    item.getInt("sellPrice"),
-                    item.getInt("sellNum"),
-                    item.getString("sellDate"),
-                    item.getInt("buyIdx")
-                )
-            )
-
-            totalProfitData += (item.getInt("sellPrice").minus(item.getInt("buyPrice")))*item.getInt("sellNum")
-
-        }
+    override fun onResume() {
+        super.onResume()
         adapter.notifyDataSetChanged()
-
-        //totalProfit 계산
-        var totalProfitComma =  NumberFormat.getInstance().format(totalProfitData)
-        v.totalProfit.setText("총 수익 : $totalProfitComma")
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        getStockData()
     }
 }

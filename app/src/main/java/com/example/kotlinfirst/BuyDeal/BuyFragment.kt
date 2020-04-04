@@ -18,7 +18,7 @@ import com.example.kotlinfirst.R
 import com.example.kotlinfirst.BuyDeal.adapter.StockDataAdapter
 import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
 import com.example.kotlinfirst.BuyDeal.viewmodel.BuyViewModel
-import com.example.kotlinfirst.model.NumberLimitModel
+import com.example.kotlinfirst.BuyDeal.data.NumberLimitModel
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 @Suppress("UNUSED_ANONYMOUS_PARAMETER", "NAME_SHADOWING")
@@ -103,5 +103,8 @@ open class BuyFragment: Fragment(){
         return true
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 }

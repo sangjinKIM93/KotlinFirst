@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.RetrofitKotlin
 import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
-import com.example.kotlinfirst.model.SellModelRealm
+import com.example.kotlinfirst.SellDeal.data.SellModelRealm
 import com.example.kotlinfirst.model.TotalModel
 import com.google.gson.GsonBuilder
 import io.realm.Realm

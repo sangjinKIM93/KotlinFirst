@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirst.R
-import com.example.kotlinfirst.model.SellModelRealm
+import com.example.kotlinfirst.SellDeal.data.SellModelRealm
 import kotlinx.android.synthetic.main.item_selllist.view.*
 
 class SellDataAdapter(val list:MutableList<SellModelRealm>): RecyclerView.Adapter<SellDataViewHolder>(), View.OnCreateContextMenuListener{

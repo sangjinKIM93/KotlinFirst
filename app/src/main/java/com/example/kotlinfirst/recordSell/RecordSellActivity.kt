@@ -6,11 +6,13 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinfirst.ETC.DatePickerSet
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
-import com.example.kotlinfirst.model.SellModelRealm
+import com.example.kotlinfirst.SellDeal.data.SellModelRealm
+import com.example.kotlinfirst.recordSell.viewmodel.RecordSellViewModel
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
@@ -30,6 +32,10 @@ class RecordSellActivity : AppCompatActivity() {
     lateinit var adapter: TargetDataAdapter
     lateinit var datePickerSetSell: DatePickerSet
 
+    private var viewModel : RecordSellViewModel?= null
+
+    lateinit var companyName: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_sell)
@@ -37,25 +43,31 @@ class RecordSellActivity : AppCompatActivity() {
         //realm객체 선언
         realm = Realm.getDefaultInstance()
 
-        //spinnerDataSet
-        getSpinnerData()
-
-        //리사이클러뷰 셋팅
-        targetList = mutableListOf()
-        adapter = TargetDataAdapter(targetList)
-        targetBuyRecycler.adapter = adapter
-        targetBuyRecycler.layoutManager = LinearLayoutManager(this)
-
-        //스피너 설정
-        spinnerSet()
-
         //datePicker 설치 및 date 받기
         val datePicker = findViewById<DatePicker>(R.id.date_pickerSell)
         datePickerSetSell = DatePickerSet()
         datePickerSetSell.datePickerSet(datePicker)
 
-        fabButtonSet()
+        //spinner에 들어갈 데이터 가져오기 & 스피너 선택시 리스트 변경
+        getSpinnerData()
+        spinnerSet()
 
+        //viewModel셋팅
+        viewModel = application!!.let{
+            ViewModelProvider(
+                viewModelStore,
+                ViewModelProvider.AndroidViewModelFactory(it)
+            ).get(RecordSellViewModel::class.java)
+        }
+
+        //target 종목 매수 데이터 리사이클러뷰 셋팅
+        targetList = mutableListOf()
+        adapter = TargetDataAdapter(targetList)
+        targetBuyRecycler.adapter = adapter
+        targetBuyRecycler.layoutManager = LinearLayoutManager(this)
+
+
+        fabButtonSet()
 
     }
 
@@ -65,48 +77,20 @@ class RecordSellActivity : AppCompatActivity() {
         sellFinishBtn.setOnClickListener{
 
             var targetSize = targetList.size    //돌릴 리스트 갯수
-
             var sellPrice: String = stockPriceSell.text.toString()  //매도단가 가져오기
             var sellPriceInt: Int = sellPrice.toInt()
 
             for(i in 0..targetSize-1){
                 var sellNum = adapter.list[i].sellNum as Int        //숫자가 0보다 크면 변경된 것으로 간주하고 DB에 추가한다.
                 if(sellNum != null && sellNum > 0){
-                    realm.executeTransaction {
 
-                        //id autoIncrement
-                        var currentId = realm.where<SellModelRealm>().max("_id")
-                        var nextId: Long
-                        if (currentId == null) {
-                            nextId = 1;
-                        } else {
-                            nextId = currentId.toLong() + 1
-                        }
-
-                        //SellModel에 추가
-                        val sellData = realm.createObject<SellModelRealm>() // Create a new object
-                        sellData._id = nextId
-                        sellData.sellName = stockNameSell.selectedItem.toString()
-                        sellData.buyPrice = targetList[i].buyPrice
-                        sellData.buyNum = targetList[i].buyNum
-                        sellData.sellPrice = sellPriceInt
-                        sellData.sellNum = sellNum
-                        sellData.sellDate = datePickerSetSell.date
-                        sellData.buyIdx = targetList[i]._id!!.toInt()
-
-                        //팔린 항목은 numsold 추가해주기
-                        var query = realm.where<BuyModelRealm>().equalTo("_id", targetList[i]._id!!)
-                        var targetBuyData = query.findFirst()
-                        targetBuyData!!.buyNumSold = targetBuyData.buyNumSold?.plus(sellNum)   //분할매도할 수 있으니 판매량은 더해줘야해.
-
-                        println("매도 자료 저장 $sellData")
+                    viewModel!!.let{
+                        it.addSellAndBuyNumSold(i, companyName, stockNameSell.selectedItem.toString(),
+                            sellPriceInt, sellNum, datePickerSetSell.date)
                     }
                 }
-
             }
-
             finish()
-
         }
     }
 
@@ -131,7 +115,6 @@ class RecordSellActivity : AppCompatActivity() {
         }
     }
 
-
     //스피너 셋팅 및 설정
     private fun spinnerSet() {
         //스피너 구현
@@ -150,7 +133,7 @@ class RecordSellActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    var companyName = dealList[position]
+                    companyName = dealList[position]
                     println("회사의 이름은 $companyName")
                     getStockData(companyName)
                 }

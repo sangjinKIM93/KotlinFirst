@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DealActivity">
+    tools:context=".MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab"
+        android:background="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/white"
+        app:tabIndicatorColor="@color/colorAccent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="40dp"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/container"

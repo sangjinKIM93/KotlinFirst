@@ -8,6 +8,8 @@ import io.realm.Realm
 
 class BuyViewModel : ViewModel() {
 
+    private var buyModelRealm = BuyModelRealm()
+
     private val realm: Realm by lazy{
         Realm.getDefaultInstance()
     }
@@ -20,8 +22,8 @@ class BuyViewModel : ViewModel() {
         RealmLiveData(buyModelDao.getAllBuy())
     }
 
-    fun addOrUpdateBuy(buyModelRealm: BuyModelRealm){
-        //
+    fun addOrUpdateBuy(name: String, code:String, price: String, number: String, date: String){
+        buyModelDao.addOrUpdateBuy(buyModelRealm, name, code, price, number, date)
     }
 
     override fun onCleared() {
