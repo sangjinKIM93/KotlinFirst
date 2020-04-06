@@ -31,7 +31,7 @@
         <DatePicker
             android:id="@+id/date_pickerSell"
             android:layout_width="220dp"
-            android:layout_height="100dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:calendarViewShown="false"

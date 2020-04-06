@@ -1,4 +1,4 @@
-package com.example.kotlinfirst
+package com.example.kotlinfirst.ETC
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

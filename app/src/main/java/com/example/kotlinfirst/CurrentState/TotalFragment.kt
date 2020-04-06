@@ -8,13 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinfirst.R
 import com.example.kotlinfirst.RetrofitKotlin
 import com.example.kotlinfirst.BuyDeal.data.BuyModelRealm
+import com.example.kotlinfirst.BuyDeal.viewmodel.BuyViewModel
 import com.example.kotlinfirst.SellDeal.data.SellModelRealm
-import com.example.kotlinfirst.model.TotalModel
+import com.example.kotlinfirst.SellDeal.viewmodel.SellViewModel
 import com.google.gson.GsonBuilder
 import io.realm.Realm
 import io.realm.kotlin.where
@@ -79,10 +83,11 @@ open class TotalFragment : Fragment() {
         //데이터셋팅
         totalNameList = arrayListOf()
         totalCodeList = arrayListOf()
-        getTotalData()
+        //getTotalData()
 
 
-        v.btn_crawl.setOnClickListener{
+        //크롤링 버튼
+        v.btn_crawl.setOnClickListener {
 
             it.btn_crawl.shrink()   //버튼 줄어들기
 
@@ -95,11 +100,11 @@ open class TotalFragment : Fragment() {
             rotate.start()
 
 
-            var params:HashMap<String, String> = HashMap()
+            var params: HashMap<String, String> = HashMap()
 
             params.put("size", totalList.size.toString())
 
-            for(i in 0..totalList.size-1){
+            for (i in 0..totalList.size - 1) {
                 params.put(i.toString(), totalList.get(i).totalCode.toString())
             }
 
@@ -117,10 +122,11 @@ open class TotalFragment : Fragment() {
 
                     //받아온 데이터를 넣어서 출력
                     var jsonArray = JSONArray(result)
-                    for(i in 0..jsonArray.length()-1){
+                    for (i in 0..jsonArray.length() - 1) {
                         var jsonObject = jsonArray.getJSONObject(i)
                         var item = jsonObject.getString("currentPrice")
-                        var itemCleaned = item.replace(",", "");      //숫자 사이에 , 있어서 제거 후에 int로 바꿔줘야함.
+                        var itemCleaned =
+                            item.replace(",", "");      //숫자 사이에 , 있어서 제거 후에 int로 바꿔줘야함.
                         Log.d("item : ", itemCleaned)
                         totalList.get(i).totalCurrentPrice = itemCleaned.toInt()
                     }
@@ -138,24 +144,26 @@ open class TotalFragment : Fragment() {
 
                 }
             })
-
-            //2. 가져온 데이터로 arrayList최신화하여 recyclerView 재설정하기.
-
         }
 
         return v
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getTotalData()
     }
 
 
     //data넣어주기
     private fun getTotalData() {
 
+        totalList.clear()
 
         //리스트 만들기. 이거는 그냥 spinner 만들때 같이 하고 shared로 저장하자...
         var query = realm.where<BuyModelRealm>()
         var allDealData = query.findAll()
 
-        println("디비에 있는 데이터 $allDealData")
         var totalProfitData = 0
 
         var jsonArray = JSONArray(allDealData.asJSON())
@@ -175,7 +183,6 @@ open class TotalFragment : Fragment() {
 
             var totalNum = 0
             var totalPrice = 0
-            var totalAvgPrice = 0
 
             //buyData에서 계산
             var queryBuy = realm.where<BuyModelRealm>().equalTo("buyName", totalNameList[i])
@@ -185,11 +192,11 @@ open class TotalFragment : Fragment() {
             for (i in 0..jsonArrayBuy.length() - 1) {
                 var item = jsonArrayBuy.getJSONObject(i)
 
-                totalPrice = item.getInt("buyPrice")*item.getInt("buyNum")
+                totalPrice += item.getInt("buyPrice") * item.getInt("buyNum")
                 totalNum += item.getInt("buyNum")
-                totalAvgPrice = (totalAvgPrice+totalPrice)/totalNum
-
             }
+
+            var totalAvgPrice = totalPrice/totalNum     //평균매입가격
 
             //sellData에서 num 빼주기
             var querySell = realm.where<SellModelRealm>().equalTo("sellName", totalNameList[i])
@@ -205,26 +212,24 @@ open class TotalFragment : Fragment() {
                 }
             }
 
-            if(totalNum > 0){   //0보다 작으면 의미가 없지.
-                realm.executeTransaction {
-                    //최종 데이터 추가
-                    totalList.add(
-                        TotalModel(
-                            totalNameList[i],
-                            totalCodeList[i],
-                            totalAvgPrice,
-                            0,
-                            totalNum,
-                            totalAvgPrice*totalNum
-                        )
+            if (totalNum > 0) {   //0보다 작으면 의미가 없지.
+
+                //최종 데이터 추가
+                totalList.add(
+                    TotalModel(
+                        totalNameList[i],
+                        totalCodeList[i],
+                        totalAvgPrice,
+                        0,
+                        totalNum,
+                        totalAvgPrice * totalNum
                     )
-                }
+                )
+
             }
         }
 
-
         adapter.notifyDataSetChanged()
-
     }
 
 

@@ -51,16 +51,14 @@ open class BuyFragment: Fragment(){
         v = inflater.inflate(R.layout.activity_main, container, false)
         mContext = requireContext()
 
-//        realm.executeTransaction{
-//            realm.deleteAll()
-//        }
-
         viewModel = activity!!.application!!.let{
             ViewModelProvider(
                 activity!!.viewModelStore,
                 ViewModelProvider.AndroidViewModelFactory(it)
             ).get(BuyViewModel::class.java)
         }
+
+        //viewModel!!.deleteAll()
 
         viewModel!!.let{
             it.buyLiveData.value?.let{

@@ -26,6 +26,12 @@ class BuyViewModel : ViewModel() {
         buyModelDao.addOrUpdateBuy(buyModelRealm, name, code, price, number, date)
     }
 
+    fun deleteAll(){
+        realm.executeTransaction{
+            realm.deleteAll()
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         realm.close()

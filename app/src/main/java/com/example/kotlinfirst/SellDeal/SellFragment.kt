@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ import com.example.kotlinfirst.SellDeal.viewmodel.SellViewModel
 import com.example.kotlinfirst.recordSell.RecordSellActivity
 import io.realm.Realm
 import io.realm.kotlin.where
+import kotlinx.android.synthetic.main.fragment_sell.*
 import kotlinx.android.synthetic.main.fragment_sell.view.*
 import org.json.JSONArray
 import java.text.NumberFormat
@@ -64,10 +66,20 @@ open class SellFragment : Fragment() {
                 adapter = SellDataAdapter(it)
                 v.sellRecycler.adapter = adapter
                 v.sellRecycler.layoutManager = LinearLayoutManager(mContext)
+
+                var totalprofit = 0
+                for(i in 0..it.size-1){
+                    var profit = (it.get(i)!!.sellPrice!!.minus(it.get(i)!!.buyPrice!!))*(it.get(i)!!.sellNum!!)
+                    totalprofit += profit
+                }
+
+                v.totalProfit.setText("총 손익 : ${totalprofit}")
+
             }
             it.sellLiveData.observe(viewLifecycleOwner,
                 Observer {
                     adapter.notifyDataSetChanged()
+                    Toast.makeText(requireContext(), "매매 옵저버", Toast.LENGTH_SHORT).show()
                 })
         }
 

@@ -10,9 +10,9 @@
         android:id="@+id/tvType"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
+        android:textSize="12dp"
         android:layout_weight="0.4"
-        android:layout_marginRight="5dp"
+        android:gravity="center"
         android:text="구분"
         android:padding="4dp"/>
 
@@ -21,8 +21,8 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.7"
-        android:textSize="16dp"
-        android:layout_marginRight="10dp"
+        android:textSize="14dp"
+        android:gravity="center"
         android:text="이름"/>
 
     <TextView
@@ -30,8 +30,8 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.6"
-        android:textSize="16dp"
-        android:layout_marginRight="5dp"
+        android:textSize="14dp"
+        android:gravity="center"
         android:text="총액(원)"/>
 
     <TextView
@@ -39,7 +39,8 @@
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.8"
-        android:textSize="13dp"
+        android:textSize="11dp"
+        android:gravity="center"
         android:text="날짜"/>
 
 

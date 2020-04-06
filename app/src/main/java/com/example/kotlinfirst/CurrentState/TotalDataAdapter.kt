@@ -1,12 +1,13 @@
 package com.example.kotlinfirst.CurrentState
 
+import android.graphics.Color
 import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirst.R
-import com.example.kotlinfirst.model.TotalModel
 import kotlinx.android.synthetic.main.item_total.view.*
 
 class TotalDataAdapter(val list:MutableList<TotalModel>): RecyclerView.Adapter<TotalDataViewHolder>(), View.OnCreateContextMenuListener{
@@ -56,6 +57,14 @@ class TotalDataAdapter(val list:MutableList<TotalModel>): RecyclerView.Adapter<T
             //손익 계산
             var profit = (list[position].totalCurrentPrice!!.minus(list[position].totalAvgPrice!!))* list[position].totalNum!!
             holder.containerView.tvTotalAmount.text = profit.toString()
+            if(profit > 0){
+                holder.containerView.tvTotalAmount.setTextColor(Color.parseColor("#BB4444"))
+            }
+            else{
+                holder.containerView.tvTotalAmount.setTextColor(Color.parseColor("#4444DD"))
+
+            }
+
         }
 
 
